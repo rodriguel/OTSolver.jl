@@ -180,7 +180,7 @@ end
 function northwest_corner_rule(marginals::Vector{Vector{T}}) where {T<:Real}
     N = length(marginals)  # Number of dimensions
     sizes = map(length, marginals)  # Size of each dimension
-    X = sptzeros(T, sizes...)  # Initialize tensor
+    X = sptzeros(T, sizes)  # Initialize tensor
     
     # Convert marginals to mutable arrays
     remaining = [copy(μ) for μ in marginals]
@@ -191,7 +191,7 @@ function northwest_corner_rule(marginals::Vector{Vector{T}}) where {T<:Real}
     while all(i -> indices[i] ≤ sizes[i], 1:N)
         # Determine amount to place at current position
         min_value = minimum(remaining[i][indices[i]] for i in 1:N)
-        X[indices...] = min_value
+        X[indices] = min_value
 
         # Subtract the allocated amount from the marginals
         for i in 1:N

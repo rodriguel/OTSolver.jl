@@ -153,7 +153,8 @@ end
 # -- Retrieve the support of a tensor
 function support(A :: LargeST{T}) where T
     B = sptzeros(T, A.dims)
-    for (idx, _) in findnz(A)
+    ks, _ = findnz(A)
+    for idx in ks 
         B[idx] = 1.
     end 
     return B

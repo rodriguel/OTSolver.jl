@@ -4,4 +4,5 @@ module OTSolver
     include("largethings.jl")
     include("domain.jl")
     include("problem.jl")
+    include("viz.jl")
 end 

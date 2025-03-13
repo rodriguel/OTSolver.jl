@@ -29,4 +29,15 @@ function change_dimension(tuple, i, new_value)
     return [tuple[1:i-1]..., new_value, tuple[i+1:end]...]
 end
 
+# -- in dimension d > 2, flattens things into 1d :
+function to_SV(domain)
+    dims = size(domain)
+    linear_dim = prod(dims)
+    v = zeros(linear_dim)
+    for i in CartesianIndices(domain)
+        il = indices_to_linear(dims, i)
+        v[il] = domain[i]
+    end 
+    return v
+end 
 

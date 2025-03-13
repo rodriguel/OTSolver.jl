@@ -1,6 +1,6 @@
 
 
-struct Domain
+mutable struct Domain
     d       # Dimension of the underlying space
     L       # Number of discretisation points [the same for each marginals, sry ;) !]
     N       # Number of marginals 
